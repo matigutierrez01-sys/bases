@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bases Ecológicas — Repaso</title>
+<style>
+  :root{
+    --soil:#3d2b1f;
+    --wheat:#c9a227;
+    --leaf:#4a6b3a;
+    --leaf-dark:#2e4423;
+    --cream:#f7f3e8;
+    --paper:#fffdf7;
+    --ink:#241c14;
+    --line:#d8cba8;
+    --accent:#a2472f;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:"Georgia","Iowan Old Style",serif;
+    line-height:1.5;
+    padding-bottom:60px;
+  }
+  header{
+    background:linear-gradient(160deg,var(--leaf-dark),var(--leaf));
+    color:var(--cream);
+    padding:32px 20px 26px;
+    position:relative;
+    overflow:hidden;
+  }
+  header::after{
+    content:"";
+    position:absolute;
+    bottom:0;left:0;right:0;
+    height:6px;
+    background:repeating-linear-gradient(90deg,var(--wheat) 0 18px, transparent 18px 26px);
+  }
+  header h1{
+    margin:0;
+    font-size:1.6rem;
+    letter-spacing:.5px;
+  }
+  header p{
+    margin:6px 0 0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    font-size:.85rem;
+    opacity:.9;
+  }
+  .eje-badge{
+    display:inline-block;
+    margin-top:10px;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    font-size:.7rem;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+    background:rgba(255,255,255,.15);
+    padding:4px 10px;
+    border-radius:20px;
+  }
+  nav{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    padding:14px 16px;
+    background:var(--paper);
+    border-bottom:1px solid var(--line);
+    position:sticky;
+    top:0;
+    z-index:10;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  }
+  nav a{
+    font-size:.72rem;
+    text-decoration:none;
+    color:var(--leaf-dark);
+    background:var(--cream);
+    border:1px solid var(--line);
+    padding:6px 10px;
+    border-radius:16px;
+    white-space:nowrap;
+  }
+  main{
+    max-width:720px;
+    margin:0 auto;
+    padding:0 18px;
+  }
+  section.clase{
+    margin-top:34px;
+    scroll-margin-top:60px;
+  }
+  .clase-title{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    border-bottom:3px solid var(--wheat);
+    padding-bottom:8px;
+    margin-bottom:16px;
+  }
+  .clase-num{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    font-weight:700;
+    font-size:.75rem;
+    color:var(--paper);
+    background:var(--leaf);
+    padding:3px 9px;
+    border-radius:4px;
+  }
+  .clase-title h2{
+    margin:0;
+    font-size:1.3rem;
+    color:var(--leaf-dark);
+  }
+  .priority{
+    background:var(--accent);
+    color:var(--paper);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    font-size:.65rem;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    padding:5px 10px;
+    border-radius:14px;
+    display:inline-block;
+    margin-bottom:14px;
+  }
+  .card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-left:4px solid var(--leaf);
+    border-radius:6px;
+    padding:14px 16px;
+    margin-bottom:12px;
+  }
+  .card h3{
+    margin:0 0 6px;
+    font-size:1rem;
+    color:var(--leaf-dark);
+  }
+  .card p{margin:4px 0;font-size:.94rem;}
+  .card ul{margin:6px 0 0;padding-left:18px;}
+  .card li{margin-bottom:4px;font-size:.92rem;}
+  .formula{
+    font-family:"Courier New",monospace;
+    background:var(--cream);
+    border:1px dashed var(--wheat);
+    padding:6px 10px;
+    border-radius:4px;
+    display:inline-block;
+    margin:6px 0;
+    font-size:.9rem;
+  }
+  .compare{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-top:8px;
+  }
+  .compare div{
+    background:var(--cream);
+    border-radius:6px;
+    padding:10px;
+    font-size:.85rem;
+  }
+  .compare div.n{border-top:3px solid #6a8caf;}
+  .compare div.p{border-top:3px solid #b08d57;}
+  .compare h4{margin:0 0 6px;font-size:.85rem;}
+  .example{
+    background:#eef2e5;
+    border-left:4px solid var(--wheat);
+    padding:10px 14px;
+    border-radius:6px;
+    font-size:.88rem;
+    margin-top:10px;
+  }
+  .example b{color:var(--leaf-dark);}
+  .sintesis{
+    background:var(--leaf-dark);
+    color:var(--cream);
+    padding:16px 18px;
+    border-radius:8px;
+    margin-top:16px;
+  }
+  .sintesis h3{margin-top:0;font-size:.95rem;text-transform:uppercase;letter-spacing:1px;color:var(--wheat);}
+  .sintesis ul{margin:0;padding-left:18px;font-size:.88rem;}
+  .sintesis li{margin-bottom:6px;}
+  .tag{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    font-size:.62rem;
+    text-transform:uppercase;
+    letter-spacing:.5px;
+    color:var(--leaf);
+    font-weight:700;
+  }
+  footer{
+    text-align:center;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    font-size:.78rem;
+    color:var(--soil);
+    opacity:.7;
+    margin-top:40px;
+    padding:0 20px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <span class="eje-badge">Eje 1 · Principios generales de ecología</span>
+  <h1>Bases Ecológicas — Repaso integrador</h1>
+  <p>FCA · UCC — Guía rápida antes del parcial</p>
+</header>
+
+<nav>
+  <a href="#c1">Clase 1</a>
+  <a href="#c2">Clase 2</a>
+  <a href="#c3">Clase 3 ⚡</a>
+  <a href="#c4">Clase 4</a>
+</nav>
+
+<main>
+
+  <!-- CLASE 1 -->
+  <section class="clase" id="c1">
+    <div class="clase-title">
+      <span class="clase-num">Clase 1</span>
+      <h2>Introducción a la Ecología</h2>
+    </div>
+
+    <div class="card">
+      <h3>¿Qué es la Ecología?</h3>
+      <p>Estudio de las relaciones entre los organismos y su ambiente (biótico y abiótico). En Agronomía, mirar los problemas productivos desde una perspectiva <b>integral</b>: ambiente, producción y sociedad conectados.</p>
+    </div>
+
+    <div class="example">
+      <b>Caso testigo — Abejorro (<i>Bombus terrestris</i>):</b> introducido en Chile (~1997–98) como solución agrícola de corto plazo (polinización de cultivos). Terminó generando un problema ecológico mayor a escala regional (desplazamiento de polinizadores nativos). Ejemplo clave de cómo una solución productiva puntual puede generar un impacto ecológico sistémico e inesperado.
+    </div>
+  </section>
+
+  <!-- CLASE 2 -->
+  <section class="clase" id="c2">
+    <div class="clase-title">
+      <span class="clase-num">Clase 2</span>
+      <h2>Pensando en sistemas</h2>
+    </div>
+
+    <div class="card">
+      <h3>Teoría de sistemas</h3>
+      <p>Un sistema es un conjunto de <b>componentes</b> que interactúan entre sí, con <b>límites</b> definidos, y con <b>entradas (inputs)</b> y <b>salidas (outputs)</b> de materia/energía respecto de su entorno.</p>
+      <ul>
+        <li><span class="tag">Componentes</span> partes que forman el sistema</li>
+        <li><span class="tag">Interacciones</span> relaciones entre componentes</li>
+        <li><span class="tag">Límites</span> lo que separa sistema de entorno</li>
+        <li><span class="tag">Entradas/salidas</span> flujos con el exterior</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Niveles de organización biológica</h3>
+      <p>Jerarquía: célula → organismo → población → comunidad → ecosistema → bioma → biósfera. Cada nivel superior emerge de las interacciones del nivel inferior.</p>
+    </div>
+
+    <div class="card">
+      <h3>Propiedades emergentes</h3>
+      <p>Características que surgen de la interacción entre componentes y que <b>no existen en las partes aisladas</b>. Ej: una población tiene tasa de natalidad, algo que un individuo solo no tiene.</p>
+    </div>
+
+    <div class="card">
+      <h3>Agroecosistema</h3>
+      <p>Ecosistema modificado y manejado por el ser humano con fines productivos. Mantiene estructura y función ecológica, pero recibe <b>subsidios energéticos externos</b> (combustible, fertilizantes, agroquímicos) y su manejo altera entradas/salidas naturales.</p>
+    </div>
+  </section>
+
+  <!-- CLASE 3 -->
+  <section class="clase" id="c3">
+    <div class="clase-title">
+      <span class="clase-num">Clase 3</span>
+      <h2>Flujo de energía en los ecosistemas</h2>
+    </div>
+    <span class="priority">⚠ Tema confirmado en el parcial</span>
+
+    <div class="card">
+      <h3>Componentes bióticos</h3>
+      <ul>
+        <li><b>Productores:</b> autótrofos, fijan energía a partir de fuentes inorgánicas (fotosíntesis). 1er nivel trófico.</li>
+        <li><b>Consumidores:</b> heterótrofos. C1 (primarios, comen productores) → C2 (secundarios) → C3 (terciarios).</li>
+        <li><b>Otros consumidores:</b> diversívoros/omnívoros, detritívoros, carroñeros, saprófagos, coprófagos.</li>
+        <li><b>Descomponedores:</b> hongos y bacterias; degradan materia orgánica muerta de todos los niveles y devuelven nutrientes en forma inorgánica.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Termodinámica</h3>
+      <p><b>1ª ley:</b> la energía no se crea ni se destruye, se transforma.</p>
+      <p><b>2ª ley:</b> ninguna transformación es 100% eficiente — parte se disipa como calor. Por eso el ecosistema necesita aporte <b>continuo</b> de energía (el sol), aunque la energía total no se destruya.</p>
+      <p><b>Entropía:</b> medida de dispersión de la energía. A mayor dispersión → menor calidad/disponibilidad energética para hacer trabajo.</p>
+    </div>
+
+    <div class="card">
+      <h3>Cadenas → redes tróficas</h3>
+      <p>Las cadenas tróficas son una simplificación: en la realidad los organismos consumen más de una fuente, formando <b>redes</b> interconectadas.</p>
+    </div>
+
+    <div class="card">
+      <h3>Eficiencia de transferencia trófica</h3>
+      <p>Solo la energía incorporada como nueva biomasa pasa al siguiente nivel (regla aprox. del 10%).</p>
+      <div class="formula">Eficiencia = (Producción nivel siguiente / Producción nivel anterior) × 100</div>
+      <p>Ejemplo: 100 kJ / 1000 kJ × 100 = <b>10%</b></p>
+    </div>
+
+    <div class="card">
+      <h3>Producción primaria</h3>
+      <p><b>PPB</b> (bruta): tasa total a la que las plantas fijan C y almacenan energía por fotosíntesis.</p>
+      <p><b>PPN</b> (neta): energía que queda tras descontar la respiración autótrofa (Rₐ) — es la disponible para crecimiento, reproducción y consumo por otros niveles.</p>
+      <div class="formula">PPN = PPB − Rₐ</div>
+      <p><b>Producción secundaria:</b> tasa a la que los heterótrofos convierten la energía asimilada en nueva biomasa (tampoco 100% eficiente).</p>
+    </div>
+
+    <div class="example">
+      <b>Agroecosistema:</b> además de la energía solar, recibe <b>subsidios energéticos</b> (combustibles, fertilizantes) cuya magnitud depende del sistema de producción.
+    </div>
+
+    <div class="sintesis">
+      <h3>Síntesis Clase 3</h3>
+      <ul>
+        <li>La energía <b>fluye</b> (un solo sentido); la materia <b>circula</b>.</li>
+        <li>En cada transformación energética disminuye la energía disponible.</li>
+        <li>Las redes tróficas son vías de transferencia de materia y energía.</li>
+        <li>La transferencia entre niveles tróficos no es 100% eficiente.</li>
+        <li>PPN = energía disponible para crecimiento, reproducción y siguiente nivel trófico.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CLASE 4 -->
+  <section class="clase" id="c4">
+    <div class="clase-title">
+      <span class="clase-num">Clase 4</span>
+      <h2>Circulación de la materia — ciclos biogeoquímicos</h2>
+    </div>
+
+    <div class="card">
+      <h3>Reservorio y flujo</h3>
+      <p><b>Reservorio:</b> compartimento donde se almacena un material (atmósfera, suelo, biomasa, océanos, rocas).</p>
+      <p><b>Flujo:</b> cantidad de material transferido entre reservorios por unidad de tiempo (fotosíntesis, respiración, escorrentía, meteorización, etc.).</p>
+    </div>
+
+    <div class="card">
+      <h3>BIO-GEO-QUÍMICO</h3>
+      <p>Circulación y transformación de elementos entre seres vivos (BIO), compartimentos no vivos —atmósfera, hidrosfera, litosfera— (GEO) y elementos químicos como C, N, P (QUÍMICO).</p>
+    </div>
+
+    <div class="card">
+      <h3>Ciclos gaseosos vs. sedimentarios</h3>
+      <div class="compare">
+        <div class="n">
+          <h4>Gaseosos (ej: N, C)</h4>
+          Reservorio: atmósfera/hidrosfera. Fase gaseosa importante. Intercambio rápido.
+        </div>
+        <div class="p">
+          <h4>Sedimentarios (ej: P)</h4>
+          Reservorio: litósfera. Sin fase gaseosa relevante. Liberación por meteorización, ciclo lento.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Ciclo del Carbono</h3>
+      <ul>
+        <li>Fotosíntesis: fijación de CO₂ (terrestres) o C inorgánico disuelto (acuáticas).</li>
+        <li>Transferencia trófica: productores → consumidores.</li>
+        <li>Respiración: retorno de CO₂ a la atmósfera/agua.</li>
+        <li>Descomposición: parte queda en materia orgánica del suelo, parte vuelve como CO₂.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Ciclo del Nitrógeno</h3>
+      <p>N₂ atmosférico (78% del aire) <b>≠</b> N disponible para las plantas → puede ser limitante.</p>
+      <ul>
+        <li><b>Fijación:</b> N₂ → NH₃/NH₄⁺ (biótica, ej. Rhizobium–leguminosa, o abiótica).</li>
+        <li><b>Asimilación:</b> plantas absorben NH₄⁺ y NO₃⁻, forman aminoácidos/proteínas.</li>
+        <li><b>Transferencia trófica</b> hacia consumidores.</li>
+        <li><b>Mineralización/amonificación:</b> descomponedores → N orgánico a NH₃/NH₄⁺.</li>
+        <li><b>Nitrificación:</b> NH₄⁺ → NO₂⁻ → NO₃⁻ (microorganismos nitrificantes).</li>
+        <li><b>Desnitrificación:</b> NO₃⁻ → N₂ (vuelve a la atmósfera, cierra el ciclo).</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Ciclo del Fósforo</h3>
+      <p>Reservorio principal: <b>rocas y sedimentos</b> (sin fase gaseosa). La meteorización libera PO₄³⁻.</p>
+      <ul>
+        <li>Absorción por plantas → ATP, ácidos nucleicos, fosfolípidos.</li>
+        <li>Transferencia trófica hacia consumidores.</li>
+        <li>Mineralización: descomponedores devuelven P orgánico a PO₄³⁻.</li>
+        <li>Sedimentación → rocas sedimentarias → meteorización (ciclo geológico lento).</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>N vs P — comparación directa</h3>
+      <div class="compare">
+        <div class="n">
+          <h4>Nitrógeno</h4>
+          Reservorio: atmósfera. Fase gaseosa sí. Entrada: fijación de N₂. Ciclo rápido y dinámico.
+        </div>
+        <div class="p">
+          <h4>Fósforo</h4>
+          Reservorio: litósfera. Sin fase gaseosa. Entrada: meteorización de rocas. Ciclo lento.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Nutriente vs. Contaminante</h3>
+      <p>Un mismo elemento puede ser <b>nutriente</b> (requerido para crecimiento/metabolismo) o <b>contaminante</b> (efectos adversos), según su <b>concentración, cantidad y compartimento</b> donde se encuentre.</p>
+      <p><b>Eutrofización:</b> exceso de N y P llegando a cuerpos de agua → desequilibrio del ecosistema acuático.</p>
+    </div>
+
+    <div class="example">
+      <b>Agroecosistemas:</b> modifican entradas, transferencias y salidas de los ciclos (fertilización, cosecha, etc.). Objetivo de manejo: maximizar salidas deseadas y reducir pérdidas no deseadas (menor eficiencia + mayor impacto ambiental).
+    </div>
+
+    <div class="sintesis">
+      <h3>Síntesis Clase 4</h3>
+      <ul>
+        <li>La materia circula entre atmósfera, agua, suelo y organismos (a diferencia de la energía, que fluye en un sentido).</li>
+        <li>Agua, C, N y P tienen distintos reservorios y velocidades de ciclado.</li>
+        <li>Los ciclos están interconectados: modificar uno afecta a los demás.</li>
+        <li>Las actividades productivas alteran entradas, transferencias y salidas de los ciclos.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  Bases Ecológicas · FCA-UCC · Repaso generado para el parcial
+</footer>
+
+</body>
+</html>
